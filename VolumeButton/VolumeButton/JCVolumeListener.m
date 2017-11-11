@@ -1,16 +1,16 @@
 //
-//  MSQPrivateVolume.m
+//  JCVolumeListener.m
 //  VolumeButton
 //
 //  Created by jacoy on 16/8/24.
 //  Copyright © 2016年 jacoy. All rights reserved.
 //
 
-#import "MSQPrivateVolume.h"
+#import "JCVolumeListener.h"
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface MSQPrivateVolume ()
+@interface JCVolumeListener ()
 
 @property (nonatomic,strong)NSDate *lastDate;
 
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation MSQPrivateVolume
+@implementation JCVolumeListener
 
 + (instancetype)sharedInstance
 {
@@ -31,7 +31,7 @@
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        _volumeInstance = [[MSQPrivateVolume alloc]init];
+        _volumeInstance = [[JCVolumeListener alloc]init];
     });
     
     return _volumeInstance;
@@ -82,6 +82,7 @@
     
     self.lastDate = date;
     
+    // 时间间隔大于0.23,开始一次新的按键记录,并在里面判断是单击还是长按
     if (time >= 0.23) {
         
         if (!self.timer) {
@@ -89,12 +90,11 @@
             [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
             
             if (self.timer) {
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                // 如果是长按  第一个时间间隔是0.6   0.6s后就可以不再监听
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     if (self.timer) {
                         if (self.tapBlock) {
                             self.tapBlock();
-                            
                             [self removeTimer];
                         }
                     }
@@ -115,7 +115,6 @@
 -(void)releaseVolume{
     
     if (self.releaseVolumeButton == YES) {
-//        NSLog(@"结束长按");
         if (self.endLongPressBlock)
         {
             self.endLongPressBlock();
@@ -131,8 +130,8 @@
 
 -(void)longPress{
     
-    if (self.timeInterval <= 0.3) {
-//        NSLog(@"开始长按");
+    //长按的第一次时间间隔是0.6s左右,所以判断小于0.7s就是长按
+    if (self.timeInterval <= 0.7) {
         if (self.beginLongPressBlock)
         {
             self.beginLongPressBlock();

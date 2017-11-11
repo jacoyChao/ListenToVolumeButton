@@ -13,9 +13,7 @@
 		8793274C1D67EA09000CA209 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8793274A1D67EA09000CA209 /* Main.storyboard */; };
 		8793274E1D67EA09000CA209 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8793274D1D67EA09000CA209 /* Assets.xcassets */; };
 		879327511D67EA09000CA209 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8793274F1D67EA09000CA209 /* LaunchScreen.storyboard */; };
-		8793275C1D67ECEC000CA209 /* 5_1920x1080.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8793275B1D67ECEC000CA209 /* 5_1920x1080.jpg */; };
-		87D65C7E1D6FF33100B6C679 /* MSQVolumeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D65C7D1D6FF33100B6C679 /* MSQVolumeButton.m */; };
-		87E6FA9E1D6DA8D300565A56 /* MSQPrivateVolume.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E6FA9D1D6DA8D300565A56 /* MSQPrivateVolume.m */; };
+		87E6FA9E1D6DA8D300565A56 /* JCVolumeListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E6FA9D1D6DA8D300565A56 /* JCVolumeListener.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,11 +27,8 @@
 		8793274D1D67EA09000CA209 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		879327501D67EA09000CA209 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		879327521D67EA09000CA209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8793275B1D67ECEC000CA209 /* 5_1920x1080.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5_1920x1080.jpg; sourceTree = "<group>"; };
-		87D65C7C1D6FF33100B6C679 /* MSQVolumeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSQVolumeButton.h; sourceTree = "<group>"; };
-		87D65C7D1D6FF33100B6C679 /* MSQVolumeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSQVolumeButton.m; sourceTree = "<group>"; };
-		87E6FA9C1D6DA8D300565A56 /* MSQPrivateVolume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSQPrivateVolume.h; sourceTree = "<group>"; };
-		87E6FA9D1D6DA8D300565A56 /* MSQPrivateVolume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSQPrivateVolume.m; sourceTree = "<group>"; };
+		87E6FA9C1D6DA8D300565A56 /* JCVolumeListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCVolumeListener.h; sourceTree = "<group>"; };
+		87E6FA9D1D6DA8D300565A56 /* JCVolumeListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCVolumeListener.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,10 +65,8 @@
 				879327451D67EA09000CA209 /* AppDelegate.m */,
 				879327471D67EA09000CA209 /* ViewController.h */,
 				879327481D67EA09000CA209 /* ViewController.m */,
-				87E6FA9C1D6DA8D300565A56 /* MSQPrivateVolume.h */,
-				87E6FA9D1D6DA8D300565A56 /* MSQPrivateVolume.m */,
-				87D65C7C1D6FF33100B6C679 /* MSQVolumeButton.h */,
-				87D65C7D1D6FF33100B6C679 /* MSQVolumeButton.m */,
+				87E6FA9C1D6DA8D300565A56 /* JCVolumeListener.h */,
+				87E6FA9D1D6DA8D300565A56 /* JCVolumeListener.m */,
 				8793274A1D67EA09000CA209 /* Main.storyboard */,
 				8793274D1D67EA09000CA209 /* Assets.xcassets */,
 				8793274F1D67EA09000CA209 /* LaunchScreen.storyboard */,
@@ -86,7 +79,6 @@
 		879327411D67EA09000CA209 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8793275B1D67ECEC000CA209 /* 5_1920x1080.jpg */,
 				879327421D67EA09000CA209 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -153,7 +145,6 @@
 				879327511D67EA09000CA209 /* LaunchScreen.storyboard in Resources */,
 				8793274E1D67EA09000CA209 /* Assets.xcassets in Resources */,
 				8793274C1D67EA09000CA209 /* Main.storyboard in Resources */,
-				8793275C1D67ECEC000CA209 /* 5_1920x1080.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,11 +155,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87D65C7E1D6FF33100B6C679 /* MSQVolumeButton.m in Sources */,
 				879327491D67EA09000CA209 /* ViewController.m in Sources */,
 				879327461D67EA09000CA209 /* AppDelegate.m in Sources */,
 				879327431D67EA09000CA209 /* main.m in Sources */,
-				87E6FA9E1D6DA8D300565A56 /* MSQPrivateVolume.m in Sources */,
+				87E6FA9E1D6DA8D300565A56 /* JCVolumeListener.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

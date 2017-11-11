@@ -7,14 +7,13 @@
 //
 
 #import "ViewController.h"
-#import "MSQVolumeButton.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
-#import "MSQPrivateVolume.h"
+#import "JCVolumeListener.h"
 
 @interface ViewController ()
 
-@property (nonatomic,strong)MSQVolumeButton *buttonStealer;
+
 
 @end
 
@@ -23,34 +22,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//
-//    self.buttonStealer = [MSQVolumeButton sharedInstance];
-//    self.buttonStealer.isAvailable = YES;
-//   self.buttonStealer.tapBlock = ^{
-//        NSLog(@"单击");
-//    };
-//    
-//    self.buttonStealer.beginLongPressBlock = ^{
-//        NSLog(@"开始长按");
-//    };
-//    
-//    self.buttonStealer.endLongPressBlock = ^{
-//        NSLog(@"结束长按");
-//    };
     
-    [MSQPrivateVolume sharedInstance].beginLongPressBlock = ^{
+    [JCVolumeListener sharedInstance].beginLongPressBlock = ^{
         NSLog(@"开始长按");
 
     };
-    
-    [MSQPrivateVolume sharedInstance].endLongPressBlock = ^{
+
+    [JCVolumeListener sharedInstance].endLongPressBlock = ^{
         NSLog(@"结束长按");
-        
+
     };
-    
-    [MSQPrivateVolume sharedInstance].tapBlock = ^{
+
+    [JCVolumeListener sharedInstance].tapBlock = ^{
         NSLog(@"单击");
-        
+
     };
     
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
@@ -68,35 +53,16 @@
 - (IBAction)start:(id)sender {
 
     NSLog(@"开始监听");
-//    [[MSQVolumeButton sharedInstance] startStealingVolumeButtonEvents];
-    [[MSQPrivateVolume sharedInstance] start];
+
+    [[JCVolumeListener sharedInstance] start];
 }
 
 - (IBAction)stop:(id)sender {
     
     NSLog(@"结束监听");
-    [[MSQPrivateVolume sharedInstance] stop];
-
-//    [[MSQVolumeButton sharedInstance] stopStealingVolumeButtonEvents];
+    
+    [[JCVolumeListener sharedInstance] stop];
 }
-
-//-(void)volumeChanged:(NSNotification *)noti
-//
-//{
-//
-//    float volume =
-//
-//    [[[noti userInfo]
-//
-//      objectForKey:@"AVSystemController_AudioVolumeNotificationParameter"]
-//
-//     floatValue];
-//
-//    NSLog(@"volumn is %f", volume);
-//
-//}
-
-
 
 
 @end
