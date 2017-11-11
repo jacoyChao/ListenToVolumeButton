@@ -37,6 +37,14 @@
     return _volumeInstance;
 }
 
+-(instancetype)init{
+    if (self = [super init]) {
+        self.lastDate = [NSDate date];
+    }
+    
+    return self;
+}
+
 
 -(void)start{
     NSLog(@"start");
@@ -84,9 +92,11 @@
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     if (self.timer) {
-                        NSLog(@"单击");
-                        
-                        [self removeTimer];
+                        if (self.tapBlock) {
+                            self.tapBlock();
+                            
+                            [self removeTimer];
+                        }
                     }
                     
                 });
@@ -94,7 +104,7 @@
         }
         
     }
-    NSLog(@"time = %f",time);
+//    NSLog(@"time = %f",time);
     self.timeInterval = time;
     self.releaseVolumeButton = NO;
 }
@@ -105,7 +115,11 @@
 -(void)releaseVolume{
     
     if (self.releaseVolumeButton == YES) {
-        NSLog(@"结束长按");
+//        NSLog(@"结束长按");
+        if (self.endLongPressBlock)
+        {
+            self.endLongPressBlock();
+        }
         
         [self.timer1 invalidate];
         self.timer1 = nil;
@@ -118,8 +132,11 @@
 -(void)longPress{
     
     if (self.timeInterval <= 0.3) {
-        NSLog(@"开始长按");
-        
+//        NSLog(@"开始长按");
+        if (self.beginLongPressBlock)
+        {
+            self.beginLongPressBlock();
+        }
         self.isRecording = YES;
         [self removeTimer];
         
